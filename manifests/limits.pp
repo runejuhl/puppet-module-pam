@@ -47,7 +47,7 @@ class pam::limits (
   }
   if $::osfamily == 'Suse' and $::lsbmajdistrelease == '10'  {
   } else {
-    common::mkdir_p { $limits_d_dir: }
+
     file { 'limits_d':
       ensure  => directory,
       path    => $limits_d_dir,
@@ -56,9 +56,7 @@ class pam::limits (
       mode    => $limits_d_dir_mode,
       purge   => $purge_limits_d_dir_real,
       recurse => $purge_limits_d_dir_real,
-      require => [ Package[$::pam::my_package_name],
-                  Common::Mkdir_p[$limits_d_dir],
-                  ],
+      require => Package[$::pam::my_package_name],
     }
   }
   file { 'limits_conf':

@@ -214,8 +214,6 @@ describe 'pam::limits' do
 
       it { should contain_class('pam') }
 
-      it { should contain_common__mkdir_p('/etc/security/limits.d') }
-
       it {
         should contain_file('limits_d').with({
           'ensure'  => 'directory',
@@ -225,7 +223,7 @@ describe 'pam::limits' do
           'mode'    => '0750',
           'purge'   => 'false',
           'recurse' => 'false',
-          'require' => [ 'Package[pam]', 'Package[util-linux]', 'Common::Mkdir_p[/etc/security/limits.d]' ],
+          'require' => [ 'Package[pam]', 'Package[util-linux]' ],
         })
       }
     end
@@ -247,8 +245,6 @@ describe 'pam::limits' do
 
       it { should contain_class('pam') }
 
-      it { should contain_common__mkdir_p('/custom/security/limits.d') }
-
       it {
         should contain_file('limits_d').with({
           'ensure'  => 'directory',
@@ -258,7 +254,7 @@ describe 'pam::limits' do
           'mode'    => '0700',
           'purge'   => 'false',
           'recurse' => 'false',
-          'require' => [ 'Package[pam]', 'Package[util-linux]', 'Common::Mkdir_p[/custom/security/limits.d]' ],
+          'require' => [ 'Package[pam]', 'Package[util-linux]' ],
         })
       }
     end
@@ -282,7 +278,7 @@ describe 'pam::limits' do
             'mode'    => '0750',
             'purge'   => 'true',
             'recurse' => 'true',
-            'require' => [ 'Package[pam]', 'Package[util-linux]', 'Common::Mkdir_p[/etc/security/limits.d]' ],
+            'require' => [ 'Package[pam]', 'Package[util-linux]' ],
           })
         }
       end
@@ -307,7 +303,7 @@ describe 'pam::limits' do
             'mode'    => '0750',
             'purge'   => 'false',
             'recurse' => 'false',
-            'require' => [ 'Package[pam]', 'Package[util-linux]', 'Common::Mkdir_p[/etc/security/limits.d]' ],
+            'require' => [ 'Package[pam]', 'Package[util-linux]' ],
           })
         }
       end
@@ -370,7 +366,6 @@ describe 'pam::limits' do
       end
 
       it { should contain_class('pam') }
-      it { should_not contain_common__mkdir_p('/etc/security/limits.d') }
       it { should_not contain_file('limits_d') }
     end
 
