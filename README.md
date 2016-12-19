@@ -469,6 +469,13 @@ Boolean to manage the inclusion of the nsswitch class.
 
 - *Default*: true
 
+pam_hash_algorithm
+------------------
+Which hash algorithm to use for new passwords. Set to sha512 per default,
+as recommended by e.g. NIST.
+
+- *Default*: sha512
+
 ===
 
 # pam::limits::fragment define

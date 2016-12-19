@@ -55,6 +55,7 @@ class pam (
   $system_auth_ac_session_lines        = undef,
   $vas_major_version                   = '4',
   $manage_nsswitch                     = true,
+  $pam_hash_algorithm                  = 'sha512',
 ) {
 
   if is_string($manage_nsswitch) == true {
@@ -117,7 +118,7 @@ class pam (
               'password    sufficient    pam_vas3.so',
               'password    requisite     pam_vas3.so echo_return',
               'password    requisite     pam_cracklib.so try_first_pass retry=3 type=',
-              'password    sufficient    pam_unix.so md5 shadow nullok try_first_pass use_authtok',
+              "password    sufficient    pam_unix.so ${pam_hash_algorithm} shadow nullok try_first_pass use_authtok",
               'password    required      pam_deny.so',
             ]
 
@@ -145,7 +146,7 @@ class pam (
 
             $default_pam_password_lines = [
               'password    requisite     pam_cracklib.so try_first_pass retry=3',
-              'password    sufficient    pam_unix.so md5 shadow nullok try_first_pass use_authtok',
+              "password    sufficient    pam_unix.so ${pam_hash_algorithm} shadow nullok try_first_pass use_authtok",
               'password    required      pam_deny.so',
             ]
 
@@ -218,7 +219,7 @@ class pam (
               'password    sufficient    pam_vas3.so',
               'password    requisite     pam_vas3.so echo_return',
               'password    requisite     pam_cracklib.so try_first_pass retry=3 type=',
-              'password    sufficient    pam_unix.so md5 shadow nullok try_first_pass use_authtok',
+              "password    sufficient    pam_unix.so ${pam_hash_algorithm} shadow nullok try_first_pass use_authtok",
               'password    required      pam_deny.so',
             ]
 
@@ -243,7 +244,7 @@ class pam (
               'password        sufficient      pam_vas3.so',
               'password        requisite       pam_vas3.so echo_return',
               'password        requisite       pam_cracklib.so try_first_pass retry=3 type=',
-              'password        sufficient      pam_unix.so md5 shadow nullok try_first_pass use_authtok',
+              "password        sufficient      pam_unix.so ${pam_hash_algorithm} shadow nullok try_first_pass use_authtok",
               'password        required        pam_deny.so',
             ]
 
@@ -281,7 +282,7 @@ class pam (
 
             $default_pam_password_lines = [
               'password    requisite     pam_cracklib.so try_first_pass retry=3 type=',
-              'password    sufficient    pam_unix.so md5 shadow nullok try_first_pass use_authtok',
+              "password    sufficient    pam_unix.so ${pam_hash_algorithm} shadow nullok try_first_pass use_authtok",
               'password    required      pam_deny.so',
             ]
 
@@ -300,7 +301,7 @@ class pam (
 
             $default_pam_password_password_lines = [
               'password    requisite     pam_cracklib.so try_first_pass retry=3 type=',
-              'password    sufficient    pam_unix.so md5 shadow nullok try_first_pass use_authtok',
+              "password    sufficient    pam_unix.so ${pam_hash_algorithm} shadow nullok try_first_pass use_authtok",
               'password    required      pam_deny.so',
             ]
 
@@ -355,7 +356,7 @@ class pam (
               'password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=',
               'password    sufficient    pam_vas3.so',
               'password    requisite     pam_vas3.so echo_return',
-              'password    sufficient    pam_unix.so md5 shadow nullok try_first_pass use_authtok',
+              "password    sufficient    pam_unix.so ${pam_hash_algorithm} shadow nullok try_first_pass use_authtok",
               'password    required      pam_deny.so',
             ]
 
@@ -381,7 +382,7 @@ class pam (
               'password        requisite       pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=',
               'password        sufficient      pam_vas3.so',
               'password        requisite       pam_vas3.so echo_return',
-              'password        sufficient      pam_unix.so md5 shadow nullok try_first_pass use_authtok',
+              "password        sufficient      pam_unix.so ${pam_hash_algorithm} shadow nullok try_first_pass use_authtok",
               'password        required        pam_deny.so',
             ]
 
@@ -439,7 +440,7 @@ class pam (
 
             $default_pam_password_password_lines = [
               'password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=',
-              'password    sufficient    pam_unix.so md5 shadow nullok try_first_pass use_authtok',
+              "password    sufficient    pam_unix.so ${pam_hash_algorithm} shadow nullok try_first_pass use_authtok",
               'password    required      pam_deny.so',
             ]
             $default_pam_password_session_lines = [
